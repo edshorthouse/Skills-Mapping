@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>IMD 2025 — Suffolk Choropleth (Embedded GeoJSON)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
+  <style>
+    :root {{ --bg:#0e0f12; --panel:#171a1f; --text:#e7e9ee; --muted:#9aa3af; --accent:#5b8def; --border:#2a2f37; }}
+    html,body{{height:100%;margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}}
+    .app{{display:grid;grid-template-rows:auto 1fr;height:100%}}
+    header{{display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:center;padding:.75rem 1rem;background:var(--panel);border-bottom:1px solid var(--border)}}
+    header h1{{font-size:1rem;margin:0;font-weight:600}}
+    .controls{{display:flex;gap:.5rem;align-items:center}}
+    label{{font-size:.9rem;color:var(--muted)}}
+    select{{background:#0f1217;color:var(--text);border:1px solid var(--border);padding:.45rem .6rem;border-radius:.5rem;min-width:240px}}
+    #map{{width:100%;height:100%}}
+    .legend{{line-height:1.2;background:var(--panel);color:var(--text);padding:.6rem .7rem;border-radius:.5rem;border:1px solid var(--border);box-shadow:0 6px 18px rgba(0,0,0,.25);font-size:.85rem}}
+    .legend .swatch{{display:inline-block;width:16px;height:12px;margin-right:.35rem;border-radius:2px;border:1px solid rgba(0,0,0,.2)}}
+    .legend-row{{display:grid;grid-template-columns:auto 1fr;gap:.5rem;align-items:center;margin-bottom:.25rem}}
+    .legend .title{{font-weight:600;margin-bottom:.35rem}}
+    .leaflet-tooltip{{background:var(--panel);color:var(--text);border-color:var(--border)}}
+    .loading{{position:absolute;inset:0;display:grid;place-items:center;background:rgba(14,15,18,.6);color:var(--text);font-weight:600;z-index:500;backdrop-filter:blur(3px)}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>IMD 2025 — Suffolk LSOA Choropleth</h1>
+      <div class="controls" role="group" aria-label="Map controls">
+        <label for="domain">IMD domain</label>
+        <select id="domain" aria-label="IMD domain selector"></select>
+      </div>
+    </header>
+    <div id="map"></div>
+    <div id="loading" class="loading" aria-live="polite">Loading data…</div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
